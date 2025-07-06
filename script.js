@@ -14,27 +14,46 @@ function addBookToLibrary(title,author,pages,read){
     const bookDetails= new Book(title,author,pages,read);
     myLibrary.push(bookDetails);
     displayBooks();
+
 }
 
 function displayBooks(){
+
+    sect.innerHTML = "";
     
-    for(const book of myLibrary){
-        
+    myLibrary.forEach(book => {
         const card=document.createElement("div");
         card.classList.add("card");
 
-        card.textContent=book.title;
+        card.innerHTML=`<h3>${book.title}</h3>
+            <p><strong>Author:</strong> ${book.author}</p>
+            <p><strong>Pages:</strong> ${book.pages}</p>
+            <p>Read?: ${book.read ? "Yes" : "No"}</p>`;
+
+        const button=document.createElement("button");    
+        button.textContent="Delete";
+        button.setAttribute("data-id",book.id);
+
+        button.addEventListener("click",()=>{
+            deleteBook(book.id)
+    });
+
+        card.appendChild(button);
         sect.appendChild(card);
-    }
+        
+    });
 }
+
+
 
 const addButton=document.querySelector(".addButton");
 const pop=document.getElementById("popup");
 const confirm=document.getElementById("confirm");
-const title=document.getElementsByName("title");
-const author=document.getElementsByName("author");
-const pages=document.getElementsByName("pages");
-const read=document.getElementsByName("read");
+const form=document.querySelector("form");
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const readInput = document.querySelector("#read");
 
 
 addButton.addEventListener("click",()=>{
@@ -43,9 +62,22 @@ addButton.addEventListener("click",()=>{
 
 confirm.addEventListener("click",(event)=>{
     event.preventDefault();
-    pop.close(title.values,author.values,pages.values,read.value);
-    addBookToLibrary(title,author,pages,read);
+
+     const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const read = readInput.checked;
+
+    addBookToLibrary(title, author, pages, read);
+    form.reset();
+    pop.close();
 })
+
+
+function deleteBook(bookId){
+    myLibrary=myLibrary.filter(book=>book.id!==bookId);
+    displayBooks();
+}
 
 
 
