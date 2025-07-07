@@ -10,6 +10,10 @@ function Book(title,author,pages,read){
     this.read=read;
 }
 
+Book.prototype.status=function(){
+    this.read=!this.read;
+}
+
 function addBookToLibrary(title,author,pages,read){
     const bookDetails= new Book(title,author,pages,read);
     myLibrary.push(bookDetails);
@@ -27,8 +31,15 @@ function displayBooks(){
 
         card.innerHTML=`<h3>${book.title}</h3>
             <p><strong>Author:</strong> ${book.author}</p>
-            <p><strong>Pages:</strong> ${book.pages}</p>
-            <p>Read?: ${book.read ? "Yes" : "No"}</p>`;
+            <p><strong>Pages:</strong> ${book.pages}</p>`;
+
+        const label=document.createElement("label");
+        label.for="check";
+        label.innerHTML=`<p><strong>Read:</strong></p>`;
+        const checkbox=document.createElement("input");
+        checkbox.type="checkbox";
+        checkbox.name="check";
+        book.read?checkbox.checked=true:checkbox.checked=false;
 
         const button=document.createElement("button");    
         button.textContent="Delete";
@@ -37,7 +48,10 @@ function displayBooks(){
         button.addEventListener("click",()=>{
             deleteBook(book.id)
     });
-
+        const readBlock=document.createElement("div");
+        readBlock.appendChild(label);
+        readBlock.appendChild(checkbox);
+        card.appendChild(readBlock);
         card.appendChild(button);
         sect.appendChild(card);
         
