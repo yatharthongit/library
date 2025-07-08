@@ -35,13 +35,15 @@ function displayBooks(){
 
         const label=document.createElement("label");
         label.for="check";
-        label.innerHTML=`<p><strong>Read:</strong></p>`;
+        label.innerHTML=`<strong>Read:</strong>`;
         const checkbox=document.createElement("input");
         checkbox.type="checkbox";
         checkbox.name="check";
+        checkbox.classList.add("cardCheckbox");
         book.read?checkbox.checked=true:checkbox.checked=false;
 
-        const button=document.createElement("button");    
+        const button=document.createElement("button");  
+        button.classList.add("delete");  
         button.textContent="Delete";
         button.setAttribute("data-id",book.id);
 
@@ -49,6 +51,7 @@ function displayBooks(){
             deleteBook(book.id)
     });
         const readBlock=document.createElement("div");
+        readBlock.classList.add("readStatus");
         readBlock.appendChild(label);
         readBlock.appendChild(checkbox);
         card.appendChild(readBlock);
@@ -92,6 +95,9 @@ function deleteBook(bookId){
     myLibrary=myLibrary.filter(book=>book.id!==bookId);
     displayBooks();
 }
+
+addBookToLibrary("Berserk", "Kentaro Miura",363, true);
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
 
 
 

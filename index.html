@@ -9,32 +9,36 @@
 </head>
 <body>
     <h1>My Library</h1>
-    <div class="addButton"><button>Add Book</button></div>
+    <button class="addButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>tray-plus</title><path d="M2 12H4V17H20V12H22V17A2 2 0 0 1 20 19H4A2 2 0 0 1 2 17M11 5H13V8H16V10H13V13H11V10H8V8H11Z" /></svg>Add Book</button>
     <dialog id="popup">
         <form>
             <p>
             <label for="title">Title:</label>
-            <input type="text" name="title" id="title">
+            <input class="input" type="text" name="title" id="title">
             </p>
 
             <p>
             <label for="author">Author:</label>
-            <input type="text" name="author" id="author">
+            <input class="input" type="text" name="author" id="author">
             </p>
 
             <p>
             <label for="pages">Pages:</label>
-            <input type="number" name="pages" id="pages">
+            <input class="input" type="number" name="pages" id="pages">
             </p>
 
             <p>
+                <div class="readDiv">
             <label for="read">Read?</label>
-            <input type="checkbox" name="read" id="read">
+            <input class="input box" type="checkbox" name="read" id="read">
+            </div>
             </p>
 
             <p>
-            <button value="cancel" formmethod="dialog">Cancel</button>
+                <div class="buttons">
+            <button value="cancel" formmethod="dialog" id="cancel">Cancel</button>
             <button id="confirm" value="default" type="submit">Confirm</button>
+            </div>
             </p>
             
         </form>
