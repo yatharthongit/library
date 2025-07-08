@@ -98,6 +98,7 @@ function deleteBook(bookId){
 
 addBookToLibrary("Berserk", "Kentaro Miura",363, true);
 addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, false);
+addBookToLibrary('Pride and Prejudice', 'Jane Austen', 279, false);
 
 
 
