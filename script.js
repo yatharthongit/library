@@ -1,13 +1,15 @@
 let myLibrary = [];
 const sect=document.querySelector(".section");
 
-function Book(title,author,pages,read){
+class Book{
 
+    constructor(title,author,pages,read){
     this.id=crypto.randomUUID();
     this.title=title;
     this.author=author;
     this.pages=pages;
     this.read=read;
+    }
 }
 
 Book.prototype.status=function(){
