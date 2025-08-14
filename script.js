@@ -71,16 +71,17 @@ const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const readInput = document.querySelector("#read");
+const cancel=document.getElementById("cancel");
 
 
 addButton.addEventListener("click",()=>{
     pop.showModal();
 });
 
-confirm.addEventListener("click",(event)=>{
+form.addEventListener("submit",(event)=>{
     event.preventDefault();
 
-     const title = titleInput.value;
+    const title = titleInput.value;
     const author = authorInput.value;
     const pages = pagesInput.value;
     const read = readInput.checked;
@@ -88,6 +89,11 @@ confirm.addEventListener("click",(event)=>{
     addBookToLibrary(title, author, pages, read);
     form.reset();
     pop.close();
+})
+
+cancel.addEventListener("click",()=>{
+    pop.close();
+    form.reset();
 })
 
 
